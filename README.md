@@ -34,3 +34,10 @@ The trade-off: the plan is a pure description of delays. It does not call your o
 ## The awkward edge
 
 `delay(attempt)` returns a random integer in `[0, jitterCap]` where `jitterCap = min(raw, cap, remaining)`. With full jitter and `Math.random() === 0`, the delay is **zero** even on the first attempt. That is intentional — full jitter exists to spread load — but if your operation cannot tolerate a zero-delay retry, wrap the result with your own floor before sleeping.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
