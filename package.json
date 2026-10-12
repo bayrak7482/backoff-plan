@@ -1,6 +1,6 @@
 {
   "name": "backoff-plan",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Retries with jitter, bounded by a total cutoff time.",
   "type": "module",
   "main": "src/index.js",
